@@ -1,3 +1,5 @@
+
+
 class Device < Pixo::Native::Application
   attr_accessor :running
 
@@ -5,6 +7,7 @@ class Device < Pixo::Native::Application
     @runner ||= Thread.new do
       Device.instance.run
     end
+
     at_exit {
       Device.instance.running = false
       Device.runner.join
@@ -33,10 +36,11 @@ class Device < Pixo::Native::Application
 
   def run
     while(running && tick(active_pattern))
-      if (active_pattern.elapsed > 30.seconds)
+      if (active_pattern.elapsed > 10.minutes)
         self.active_pattern = random_pattern
       end
     end
+    close
   end
 
   def active_pattern
@@ -48,8 +52,8 @@ class Device < Pixo::Native::Application
   end
 
   def active_pattern=(pattern)
+    pattern.reset_start
     @active_pattern = pattern
-    @active_pattern.reset_start
   end
 
 private
@@ -60,18 +64,3 @@ private
     add_fadecandy(Pixo::Native::FadeCandy.new('pixo-8.local', 8))
   end
 end
-
-cconstantine@thinker:~/workplace/pixweb$ rails generate controller PatternController
-      create  app/controllers/pattern_controller_controller.rb
-      invoke  erb
-      create    app/views/pattern_controller
-      invoke  test_unit
-      create    test/controllers/pattern_controller_controller_test.rb
-      invoke  helper
-      create    app/helpers/pattern_controller_helper.rb
-      invoke    test_unit
-      invoke  assets
-      invoke    coffee
-      create      app/assets/javascripts/pattern_controller.coffee
-      invoke    scss
-      create      app/assets/stylesheets/pattern_controller.scss
