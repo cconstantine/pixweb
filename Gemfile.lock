@@ -14,7 +14,11 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.0)
       tilt (~> 2.0)
-    sinatra-twitter-bootstrap (2.3.4)
+    sinatra-bootstrap (0.6.1)
+      sinatra (>= 1.0)
+      sinatra-outputbuffer
+    sinatra-outputbuffer (0.1.0)
+      sinatra (>= 1.0.a)
     temple (0.8.0)
     tilt (2.0.8)
 
@@ -25,7 +29,7 @@ DEPENDENCIES
   haml
   pixo
   sinatra
-  sinatra-twitter-bootstrap
+  sinatra-bootstrap
 
 BUNDLED WITH
    1.15.4

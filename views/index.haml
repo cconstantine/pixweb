@@ -1,15 +1,10 @@
-!!!
-%html
-  %head
-    = bootstrap_assets
-    %title Pixo
-  %body
-    %h1 Patterns
-    - container :fluid do
-      %p
-        %ul.list-group
-          - $pixo.patterns.each do |name, pattern|
-            %li.list-group-item
-              = name
 
-              / # = button_to "Use", device_path, method: :patch, params: {pattern_id: pattern.id}
+%h1 Patterns
+- container :fluid do
+  %p
+    %ul.list-group
+      - $pixo.patterns.each do |name, pattern|
+        %li.list-group-item
+          = name
+
+          / # = button_to "Use", device_path, method: :patch, params: {pattern_id: pattern.id}

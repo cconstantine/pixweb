@@ -1,14 +1,14 @@
 require 'pixo'
 
 require 'sinatra/base'
-require 'sinatra/twitter-bootstrap'
+require 'sinatra/bootstrap'
 
 puts Thread::current
 
 $pixo = Pixo::Application.new
 
 class App < Sinatra::Base
-  register Sinatra::Twitter::Bootstrap::Assets
+  register Sinatra::Bootstrap::Assets
 
   get '/' do
     puts Thread::current
