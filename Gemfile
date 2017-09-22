@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'pixo'
+gem 'pixo', path: "../pixo_gem"
 gem 'haml-rails'
 gem 'rspec-rails'
 
