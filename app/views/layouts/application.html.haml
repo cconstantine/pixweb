@@ -7,4 +7,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .container
+      .row
+        .col-12.col-md-9.pull-md-3
+          .row
+            %h2 Pixo Cube
+          .row
+            = yield

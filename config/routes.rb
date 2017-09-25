@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  root 'pattern#index'
+  root 'renderers#show'
 
-  resources :pattern
-
-  resource :device, only: :update
+  resource :renderer, only: [:update, :show]
 end

@@ -1,7 +1,0 @@
-
-%ul.list-group
-  - Pattern.find_each do |pattern|
-    %li.list-group-item
-      = pattern.name
-
-      = button_to "Use", device_path, method: :patch, params: {pattern_id: pattern.id}

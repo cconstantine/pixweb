@@ -12,6 +12,6 @@ patterns_dir = File.join(pixo_gem.gem_dir,'ext', 'pixo', 'patterns')
 
 Dir.entries(patterns_dir).each do | pattern_file|
   next unless pattern_file.end_with? '.glsl'
-  Pattern.where(name: pattern_file.split('.').first)
+  Pattern.where(name: pattern_file)
     .first_or_create!(code: File.read(File.join(patterns_dir, pattern_file)))
 end
