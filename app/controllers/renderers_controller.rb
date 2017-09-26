@@ -3,6 +3,7 @@ class RenderersController < ApplicationController
   before_action :load_renderer
 
   def show
+    @patterns = Pattern.where(active: true)
     render :edit
   end
 

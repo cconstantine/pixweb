@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910195817) do
+ActiveRecord::Schema.define(version: 20170926024619) do
 
   create_table "patterns", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
+    t.index ["active"], name: "index_patterns_on_active"
     t.index ["name"], name: "index_patterns_on_name", unique: true
   end
 

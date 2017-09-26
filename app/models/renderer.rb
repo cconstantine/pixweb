@@ -39,5 +39,8 @@ class Renderer < Pixo::Renderer
   private
   def initialize
     super
+    @pattern_changer = Concurrent::TimerTask.new(execution_interval: 600, timeout_interval: 5) do
+      self.pattern = Pattern.where(active: true).order("RANDOM()").first
+    end.execute
   end
 end
