@@ -112,7 +112,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
-    pixo (0.2.4)
+    pixo (0.2.5)
       concurrent-ruby
     popper_js (1.11.1)
     public_suffix (3.0.0)
