@@ -6,12 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-pixo_gem = Gem::Specification.find_by_name 'pixo'
-
-patterns_dir = File.join(pixo_gem.gem_dir,'ext', 'pixo', 'patterns')
-
-Dir.entries(patterns_dir).each do | pattern_file|
-  next unless pattern_file.end_with? '.glsl'
-  Pattern.where(name: pattern_file)
-    .first_or_create!(code: File.read(File.join(patterns_dir, pattern_file)))
+Pixo::seed_patterns.each do |name, code|
+  Pattern.where(name: name).first_or_create!(code: code)
 end

@@ -6,9 +6,19 @@ class Renderer < Pixo::Renderer
     @renderer ||= Renderer.new
   end
 
+  def self.started?
+    @renderer.present?
+  end
+
   def update(vals)
     vals.each do |k, v|
       self.send("#{k}=", v)
+    end
+  end
+
+  def on_key(key, scancode, action, mods)
+    if (key == 257 && scancode == 36 && action == 1)
+      self.pattern = Pattern.active.random.first
     end
   end
 
@@ -21,11 +31,11 @@ class Renderer < Pixo::Renderer
   end
 
   def pattern=(pattern)
-    self.active_pattern = pattern.name
+    super(pattern.name)
   end
 
   def pattern
-    Pattern.find_by_name!(active_pattern)
+    Pattern.find_by_name!(super)
   end
 
   def leds_on=(val)
@@ -39,6 +49,14 @@ class Renderer < Pixo::Renderer
   private
   def initialize
     super
+    add_fadecandy(ENV['PIXO_FADECANDY'] || 'localhost', 8)
+
+    Pattern.active.each do |pattern|
+      add_pattern(pattern.name, pattern.code)
+    end
+
+    self.pattern = Pattern.active.random.first
+  
     @pattern_changer = Concurrent::TimerTask.new(execution_interval: 600, timeout_interval: 5) do
       self.pattern = Pattern.where(active: true).order("RANDOM()").first
     end.execute

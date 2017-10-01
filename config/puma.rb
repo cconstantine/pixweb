@@ -48,7 +48,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # cannot share connections between processes.
 #
 
-Renderer.instance.add_fadecandy('pixo-8.local', 8)
+Renderer.instance
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

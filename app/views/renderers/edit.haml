@@ -1,12 +1,8 @@
-= form_for @renderer, :url => renderer_path do |f|
-  .form-group
-    = f.select :pattern_id, options_for_select(@patterns.collect { |pattern| [pattern.name, pattern.id] }, @renderer.pattern.id), {}, {class: :"form-control"}
-  .form-group
-    .form-check.mb-2.mr-sm-2.mb-sm-0
-      = f.label :leds_on, class: :"form-check-label" do
-        = f.check_box :leds_on, class: :"form-check-input"
-        Leds on
-  .form-group
-    = f.submit "Save", class: "btn btn-primary"
-  
-  
+.container
+  .row
+    .col-2
+      = button_to "Turn #{@renderer.leds_on ? 'Off' : 'On' }", toggle_renderer_path, class: "btn btn-primary"
+    .col-6
+      = form_for @renderer, :url => renderer_path do |f|
+        = f.select :pattern_id, options_for_select(@patterns.collect { |pattern| [pattern.name, pattern.id] }, @renderer.pattern.id), {}, {class: :"form-control", :onchange => "this.form.submit()"}
+        
